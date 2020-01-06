@@ -66,16 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*private fun getGamesFromDatabase() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val games = withContext(Dispatchers.IO) {
-                gameRepository.getAllGames()
-            }
-            this@MainActivity.games.clear()
-            this@MainActivity.games.addAll(games)
-            gameAdapter.notifyDataSetChanged()
-        }
-    }*/
+
 
     /**
      * Create a touch helper to recognize when a user swipes an item from a recycler view.
@@ -103,12 +94,7 @@ class MainActivity : AppCompatActivity() {
 
                 val gameToDelete = games.removeAt(position)
 
-/*                CoroutineScope(Dispatchers.Main).launch {
-                    withContext(Dispatchers.IO) {
-                        gameRepository.deleteGame(gameToDelete)
-                    }
-                    getGamesFromDatabase()
-                }*/
+
 
                 viewModel.deleteGame(gameToDelete)
             }
@@ -128,12 +114,7 @@ class MainActivity : AppCompatActivity() {
                 ADD_GAME_REQUEST_CODE -> {
                     val game = data!!.getParcelableExtra<Game>(EXTRA_GAME)
 
-/*                    CoroutineScope(Dispatchers.Main).launch {
-                        withContext(Dispatchers.IO) {
-                            gameRepository.insertGame(game)
-                        }
-                        getGamesFromDatabase()
-                    }*/
+
 
                     viewModel.insertGame(game)
                 }
@@ -161,13 +142,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deleteGames() {
-/*        CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.IO) {
-                for (i in games.indices)
-                gameRepository.deleteGame(games[i])
-            }
-            getGamesFromDatabase()
-        }*/
+
 
         for (i in games.indices) {
             viewModel.deleteGame(games[i])
